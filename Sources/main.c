@@ -41,34 +41,40 @@
 #include "KSDK1.h"
 #include "CS1.h"
 #include "UTIL1.h"
-#include "CLS1.h"
-#include "RTT1.h"
+#include "DbgCs1.h"
 #if CPU_INIT_CONFIG
 #include "Init_Config.h"
 #endif
 /* User includes (#include below this line is not maintained by Processor Expert) */
 
-static const CLS1_ParseCommandCallback CmdParserTable[] =
-{
-  CLS1_ParseCommand, /* default shell parser */
-//  ParseCommand, /* my own shell parser */
-//  SignalCommand, /* my own shell parser */
-  NULL /* Sentinel, must be last */
-};
+//static const CLS1_ParseCommandCallback CmdParserTable[] =
+//{
+//  CLS1_ParseCommand, /* default shell parser */
+////  ParseCommand, /* my own shell parser */
+////  SignalCommand, /* my own shell parser */
+//  NULL /* Sentinel, must be last */
+//};
 
 void vTaskCode( void * pvParameters )
 {
 	unsigned char buf[48];
+	vTaskDelay(1000);
 
-	buf[0] = '\0'; /* init buffer */
-
-	(void)CLS1_ParseWithCommandTable((unsigned char*)CLS1_CMD_HELP, CLS1_GetStdio(), CmdParserTable); /* write help */
-	for( ;; )
+	for(;;)
 	{
-		(void)CLS1_ReadAndParseWithCommandTable(buf, sizeof(buf), CLS1_GetStdio(), CmdParserTable);
-		//	  GPIO_DRV_TogglePinOutput(LEDRGB_RED);
-		//	  vTaskDelay(200);
+		debug_printf("task Code\n");
+		vTaskDelay(200);
 	}
+
+//	buf[0] = '\0'; /* init buffer */
+//
+//	(void)CLS1_ParseWithCommandTable((unsigned char*)CLS1_CMD_HELP, CLS1_GetStdio(), CmdParserTable); /* write help */
+//	for( ;; )
+//	{
+//		(void)CLS1_ReadAndParseWithCommandTable(buf, sizeof(buf), CLS1_GetStdio(), CmdParserTable);
+//		//	  GPIO_DRV_TogglePinOutput(LEDRGB_RED);
+//		//	  vTaskDelay(200);
+//	}
 }
 
 /*lint -save  -e970 Disable MISRA rule (6.3) checking. */

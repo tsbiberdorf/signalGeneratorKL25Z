@@ -41,8 +41,7 @@
 #include "KSDK1.h"
 #include "CS1.h"
 #include "UTIL1.h"
-#include "CLS1.h"
-#include "RTT1.h"
+#include "DbgCs1.h"
 
 #ifdef __cplusplus
 extern "C" {
